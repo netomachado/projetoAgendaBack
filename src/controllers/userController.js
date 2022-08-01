@@ -5,6 +5,7 @@ const userData = require('../data/user');
 const createUser = async (req, res) => {
   try {
     const dados = req.body
+    
     data.password = crypto.createHash('sha256').update(req.body.password).digest('hex')
  
     const cadastraUser = await userData.cadastraUsuario(dados)

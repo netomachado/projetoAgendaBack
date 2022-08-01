@@ -9,8 +9,7 @@ const loginData = require('../data/login');
 
 const postLogin = async (req, res, next) => {
     try {
-        const data = req.query;
-
+        const data = req.body;
         const senha = crypto.createHash('sha256').update(req.body.Senha).digest('hex');
         const Hash = senha;
         const user = await loginData.getByLoginUserAcesso(data, senha);
@@ -42,9 +41,9 @@ const postLogin = async (req, res, next) => {
                     token: token
                 }
             });
-
+        } else {
+            return res.status(401).send({ message: 'Falha na autenticação' })
         }
-        return res.status(400).send({ message: 'Falha na autenticação' })
 
     } catch (error) {
         res.status(500).send({ error: error.message });

@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const enderecoController = require('../controllers/enderecoController');
 
-router.post('/login', authController.postLogin);
+router.post('/login/', authController.postLogin);
 
 router.post('/usuario', userController.createUser);
 router.get('/usuario/:id', userController.getUser);
